@@ -29,28 +29,44 @@ class Board:
         self.board[x][y] = "X"
 
         if (x, y) in self.ships:
-            self.board[x][y] = "^"
+            self.board[x][y] = "*"
             return "Hit"
         else:
             return "Miss"
 
 
-    def add_ship():
+    def add_ship(self, x, y, type="computer"):
+        if len(self.ships) >= self.num_ships:
+            print("Error: you can't add any more ships!")
+        else:
+            self.ships.append((x, y))
+            if self.type == "player":
+                self.board[x][y] = "@"
 
 
     def random_point():
+        return randint(0, size - 1)
 
     
-    def valid_corordinates():
+    def valid_corordinates(x, y, board):
+    
+
 
 
     def populate_board():
+    
 
 
     def make_guess():
+    
 
 
     def play_game():
+        __init__(self, size, num_ships, name, type)
+        print(self)
+        guess(self, x, y)
+        add_ship(self, x, y, type="computer")
+        random_point()
 
 
     def new_game():
@@ -62,6 +78,23 @@ class Board:
         num_ships = 3
         scores["computer"] = 0
         scores["player"] = 0
+        print("-" * 35)
+        print("Welcome to Battleships!")
+        print(f"Board Size:{size}. Number of ships:{num_ships}")
+        print("Top left corner is row: 0, col: 0")
+        print("-" * 35)
+        player_name = input("Please enter your name:\n")
+        print("-" * 35)
+
+        computer_board =Board(size, num_ships, "Computer", type="computer")
+        player_board = Board(size, num_ships, player_namem type="player")
+
+        for _ in range(num_ships):
+            populate_board(playaer_board)
+            populate_board(computer_board)
+
+        play_game(computer_board, player_board)
+
 
 
 
