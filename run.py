@@ -2,22 +2,23 @@ from random import randint
 
 scores = {"computer": 0, "player": 0}
 
-
-class Board:
+class Grid:
     """
     Main board class. which contain and sets board size the number of ships
-     the players name and board type(player board or computer)
-     Has methods for adding ships and gueses and printing the board
+    the players name and board type(player board or computer)
+    Has methods for adding ships and gueses and printing the board
     """
-
     def __init__(self, size, num_ships, name, type):
-        self.size = size
-        self.board = [["." for x in range(size)] for y in range(size)]
-        self.num_ships = num_ships
-        self.name = name
-        self.type = type
-        self.guesses = []
-        self.ships = []
+         self.size = size
+         self.board = [["." for x in range(size)] for y in range(size)]
+         self.num_ships = num_ships
+         self.name = name
+         self.type = type
+         self.guesses = []
+         self.ships = []
+                
+    
+
 
     def print(self):
         for row in self.board:
@@ -29,7 +30,7 @@ class Board:
         self.board[x][y] = "X"
 
         if (x, y) in self.ships:
-            self.board[x][y] = "*"
+            self.board[x][y] = " * "
             return "Hit"
         else:
             return "Miss"
@@ -44,29 +45,44 @@ class Board:
                 self.board[x][y] = "@"
 
 
-    def random_point():
+    def random_point(size):
         return randint(0, size - 1)
 
     
-    def valid_corordinates(x, y, board):
+    def valid_coordinates(x, y, board):
+        global grid
+        global ship_postion
+
+        all_valid = True
+            self.board[x][y] != "."
+                all_valid = False
+                break
+        if all_valid:
+            ship_postion.append([x, y, board])
+            self.board[x][y] = "0"
+        return all_valid
+        print(self.board)
+
     
 
 
 
-    def populate_board():
+   # def populate_board(board):
+
+        #self.board.append((x, y))
+    
+        
+
     
 
 
-    def make_guess():
+    #def make_guess(board):
     
 
 
-    def play_game():
-        __init__(self, size, num_ships, name, type)
-        print(self)
-        guess(self, x, y)
-        add_ship(self, x, y, type="computer")
-        random_point()
+    #def play_game(computer_board, player_board):
+        
+    
 
 
     def new_game():
@@ -75,7 +91,7 @@ class Board:
         resets the scores and initialises the boards
         """
         size = 5
-        num_ships = 3
+        num_ships = 4
         scores["computer"] = 0
         scores["player"] = 0
         print("-" * 35)
@@ -86,16 +102,14 @@ class Board:
         player_name = input("Please enter your name:\n")
         print("-" * 35)
 
-        computer_board =Board(size, num_ships, "Computer", type="computer")
-        player_board = Board(size, num_ships, player_namem type="player")
+        computer_board = Grid(size, num_ships, "Computer", type="computer")
+        player_board = Grid(size, num_ships, player_name, type="player")
 
         for _ in range(num_ships):
-            populate_board(playaer_board)
+            populate_board(player_board)
             populate_board(computer_board)
 
-        play_game(computer_board, player_board)
-
-
+        play_game(player_board, computer_board)
 
 
     new_game()
